@@ -1,0 +1,111 @@
+interface Skill {
+  name: string;
+  level: number; // 0-100
+}
+
+interface Education {
+  institution: string;
+  degree: string;
+  dates: string;
+  description?: string;
+}
+
+const skillsData: Skill[] = [
+  { name: 'JavaScript', level: 90 },
+  { name: 'TypeScript', level: 85 },
+  { name: 'React', level: 80 },
+  { name: 'Tailwind CSS', level: 95 },
+  { name: 'Node.js', level: 75 },
+  { name: 'HTML', level: 95 },
+  { name: 'CSS', level: 90 },
+  { name: 'UI/UX Design', level: 80 },
+];
+
+const educationData: Education[] = [
+  {
+    institution: 'University of Example',
+    degree: 'BSc Computer Science',
+    dates: '2018 - 2022',
+    description: 'Relevant coursework included data structures, algorithms, and software engineering.',
+  },
+  {
+    institution: 'Online Learning Platform',
+    degree: 'Various Certificates',
+    dates: '2022 - Present',
+    description: 'Completed courses in advanced React, TypeScript, and UI/UX design.',
+  },
+];
+
+function renderSkills(skills: Skill[]): string {
+  return `
+    <div class="mb-8">
+      <h2 class="text-2xl font-semibold mb-4">Skills</h2>
+      <ul class="list-none pl-0">
+        ${skills.map(skill => `
+          <li class="mb-2">
+            <div class="flex items-center justify-between">
+              <span>${skill.name}</span>
+              <span>${skill.level}%</span>
+            </div>
+            <div class="bg-gray-200 rounded-full h-2 dark:bg-gray-700">
+              <div class="bg-primary h-2 rounded-full" style="width: ${skill.level}%"></div>
+            </div>
+          </li>
+        `).join('')}
+      </ul>
+    </div>
+  `;
+}
+
+function renderEducation(education: Education[]): string {
+  return `
+    <div class="mb-8">
+      <h2 class="text-2xl font-semibold mb-4">Education</h2>
+      ${education.map(edu => `
+        <div class="mb-4">
+          <h3 class="font-semibold">${edu.degree} - ${edu.institution}</h3>
+          <p class="text-gray-600">${edu.dates}</p>
+          ${edu.description ? `<p class="mt-2">${edu.description}</p>` : ''}
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function renderAbout(): string {
+  return `
+    <section class="container mx-auto p-6 mt-10">
+      <h1 class="text-3xl font-bold mb-6">About Me</h1>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          <img src="https://via.placeholder.com/400" alt="Profile Picture" class="rounded-lg shadow-md mb-4">
+          <p class="text-lg">
+            A passionate front-end developer with a strong background in creating user-friendly and responsive web applications.
+            I specialize in React, TypeScript, and Tailwind CSS, and I'm always eager to learn new technologies.
+          </p>
+        </div>
+        <div>
+          ${renderSkills(skillsData)}
+          ${renderEducation(educationData)}
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+// Function to insert the about section into the DOM
+function insertAboutSection(targetElement: HTMLElement | null): void {
+  if (!targetElement) {
+    console.error('Target element not found');
+    return;
+  }
+
+  targetElement.innerHTML = renderAbout();
+}
+
+// Example usage:
+// Assuming you have an element with id "about-section" in your index.html
+// const aboutSection = document.getElementById('about-section');
+// insertAboutSection(aboutSection);
+
+export { renderAbout, insertAboutSection };

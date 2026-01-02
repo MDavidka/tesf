@@ -1,0 +1,105 @@
+interface ContactFormData {
+  name: string;
+  email: string;
+  message: string;
+}
+
+function ContactForm() {
+  const form = document.createElement('form');
+  form.classList.add('max-w-lg', 'mx-auto', 'mt-8', 'space-y-6');
+
+  // Name Input
+  const nameLabel = document.createElement('label');
+  nameLabel.classList.add('block', 'text-gray-700', 'text-sm', 'font-bold', 'mb-2');
+  nameLabel.textContent = 'Name:';
+  const nameInput = document.createElement('input');
+  nameInput.type = 'text';
+  nameInput.name = 'name';
+  nameInput.placeholder = 'Your Name';
+  nameInput.classList.add('shadow', 'appearance-none', 'border', 'rounded', 'w-full', 'py-2', 'px-3', 'text-gray-700', 'leading-tight', 'focus:outline-none', 'focus:shadow-outline');
+  form.appendChild(nameLabel);
+  form.appendChild(nameInput);
+
+  // Email Input
+  const emailLabel = document.createElement('label');
+  emailLabel.classList.add('block', 'text-gray-700', 'text-sm', 'font-bold', 'mb-2');
+  emailLabel.textContent = 'Email:';
+  const emailInput = document.createElement('input');
+  emailInput.type = 'email';
+  emailInput.name = 'email';
+  emailInput.placeholder = 'Your Email';
+  emailInput.classList.add('shadow', 'appearance-none', 'border', 'rounded', 'w-full', 'py-2', 'px-3', 'text-gray-700', 'leading-tight', 'focus:outline-none', 'focus:shadow-outline');
+  form.appendChild(emailLabel);
+  form.appendChild(emailInput);
+
+  // Message Input
+  const messageLabel = document.createElement('label');
+  messageLabel.classList.add('block', 'text-gray-700', 'text-sm', 'font-bold', 'mb-2');
+  messageLabel.textContent = 'Message:';
+  const messageTextarea = document.createElement('textarea');
+  messageTextarea.name = 'message';
+  messageTextarea.placeholder = 'Your Message';
+  messageTextarea.rows = 4;
+  messageTextarea.classList.add('shadow', 'appearance-none', 'border', 'rounded', 'w-full', 'py-2', 'px-3', 'text-gray-700', 'leading-tight', 'focus:outline-none', 'focus:shadow-outline');
+  form.appendChild(messageLabel);
+  form.appendChild(messageTextarea);
+
+  // Submit Button
+  const submitButton = document.createElement('button');
+  submitButton.type = 'submit';
+  submitButton.textContent = 'Submit';
+  submitButton.classList.add('bg-blue-500', 'hover:bg-blue-700', 'text-white', 'font-bold', 'py-2', 'px-4', 'rounded', 'focus:outline-none', 'focus:shadow-outline');
+  form.appendChild(submitButton);
+
+  // Success/Error Message Container
+  const messageContainer = document.createElement('div');
+  messageContainer.id = 'form-message';
+  messageContainer.classList.add('mt-4', 'text-center');
+  form.appendChild(messageContainer);
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData: ContactFormData = {
+      name: nameInput.value,
+      email: emailInput.value,
+      message: messageTextarea.value,
+    };
+
+    // Basic client-side validation
+    if (!formData.name || !formData.email || !formData.message) {
+      displayMessage('Please fill in all fields.', 'error');
+      return;
+    }
+
+    // Simulate form submission (replace with actual API call if needed)
+    try {
+      await simulateFormSubmission(formData); // Simulate an async operation
+      displayMessage('Message sent successfully!', 'success');
+      form.reset(); // Clear the form
+    } catch (error) {
+      console.error('Form submission error:', error);
+      displayMessage('An error occurred. Please try again later.', 'error');
+    }
+  });
+
+  function displayMessage(message: string, type: 'success' | 'error') {
+    messageContainer.textContent = message;
+    messageContainer.classList.remove('text-green-500', 'text-red-500'); // Clear previous styles
+    messageContainer.classList.add(type === 'success' ? 'text-green-500' : 'text-red-500');
+  }
+
+  // Simulate an asynchronous form submission
+  async function simulateFormSubmission(data: ContactFormData): Promise<void> {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        console.log('Form data submitted:', data);
+        resolve();
+      }, 1000); // Simulate a 1-second delay
+    });
+  }
+
+  return form;
+}
+
+export default ContactForm;

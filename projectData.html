@@ -1,0 +1,58 @@
+// projectData.ts
+
+export interface Project {
+  id: string;
+  title: string;
+  description: string;
+  imageUrl: string;
+  liveDemoUrl?: string;
+  repositoryUrl: string;
+  technologies: string[];
+}
+
+export const projects: Project[] = [
+  {
+    id: "project-1",
+    title: "E-commerce Platform",
+    description:
+      "A fully functional e-commerce platform built with React, TypeScript, and Tailwind CSS. Includes user authentication, product catalog, shopping cart, and checkout process.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1517336714731-4896894dbb08?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    liveDemoUrl: "https://example.com/ecommerce",
+    repositoryUrl: "https://github.com/user/ecommerce",
+    technologies: ["React", "TypeScript", "Tailwind CSS", "Node.js", "Express"],
+  },
+  {
+    id: "project-2",
+    title: "Task Management App",
+    description:
+      "A task management application to help users organize their daily tasks. Built with React, Redux, and Material UI.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1542326568-3c3ff977153b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    liveDemoUrl: "https://example.com/task-manager",
+    repositoryUrl: "https://github.com/user/task-manager",
+    technologies: ["React", "Redux", "Material UI", "Firebase"],
+  },
+  {
+    id: "project-3",
+    title: "Personal Portfolio Website",
+    description:
+      "A personal portfolio website to showcase projects, skills, and experience. Built with Next.js and Tailwind CSS.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1639812934149-0e6ca2f83ca6?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    liveDemoUrl: "https://example.com/portfolio",
+    repositoryUrl: "https://github.com/user/portfolio",
+    technologies: ["Next.js", "Tailwind CSS", "Vercel"],
+  },
+  {
+    id: "project-4",
+    title: "Mobile Weather App",
+    description:
+      "A mobile weather application providing real-time weather updates and forecasts. Built with React Native.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1580191746842-e1915195b93c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    liveDemoUrl: undefined,
+    repositoryUrl: "https://github.com/user/weather-app",
+    technologies: ["React Native", "Expo", "OpenWeatherMap API"],
+  },
+];

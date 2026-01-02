@@ -1,0 +1,51 @@
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { Header } from './components';
+import { ProjectList } from './components';
+import { ContactForm } from './contactForm';
+import { AboutSection } from './about';
+import { Footer } from './components';
+import { projectData } from './projectData';
+
+import './style.css';
+
+interface AppState {
+  projects: Project[];
+}
+
+interface Project {
+  id: number;
+  title: string;
+  description: string;
+  imageUrl: string;
+  liveDemoUrl?: string;
+  repositoryUrl?: string;
+}
+
+const App: React.FC = () => {
+  const [appState, setAppState] = React.useState<AppState>({
+    projects: projectData,
+  });
+
+  return (
+    <div className="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans antialiased min-h-screen flex flex-col">
+      <Header />
+
+      <main className="container mx-auto px-4 py-8 flex-grow">
+        <AboutSection />
+        <ProjectList projects={appState.projects} />
+        <ContactForm />
+      </main>
+
+      <Footer />
+    </div>
+  );
+};
+
+const root = ReactDOM.createRoot(
+  document.getElementById('root') as HTMLElement
+);
+
+root.render(
+    <App />
+);
